@@ -5,7 +5,6 @@ GPIO.setwarnings(False)    # Ignore warning for now
 GPIO.setmode(GPIO.BOARD)   # Use physical pin numbering
 
 ITER_COUNT = 15
-if (len(sys.argv) > 1): ITER_COUNT = int(sys.argv[1])  
 pin1 = 11
 
 GPIO.setup(pin1, GPIO.OUT, initial=GPIO.LOW)   
