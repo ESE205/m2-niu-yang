@@ -1,8 +1,10 @@
+from datetime import datetime
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 import time
 import sys
 GPIO.setwarnings(False) # Ignore warning for now
 GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
+GPIO.setup(PIN_NUMBER, GPIO.IN)
 
 ITER_COUNT = 15
 DEBUG = False
@@ -17,7 +19,9 @@ with open('data.txt', 'w') as data:
     # Just show time in seconds not fraction of seconds
     data.write(f'{time.time():1.0f} {LED_IS_ON}\n')
     if DEBUG:
-      print(f'LED is on: {LED_IS_ON}')
+      t = time.time()
+      date_t = datetime.fromtimestamp(t)
+      print(f'switch is on: {GPIO.input(PIN_NUMBER)} \t current time: {date_t} \t number of iteration: {ITER_COUNT}')
     LED_IS_ON = not(LED_IS_ON)
     time.sleep(1)
 GPIO.cleanup()
